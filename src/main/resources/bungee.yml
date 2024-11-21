@@ -1,0 +1,4 @@
+name: discordconnector
+version: '0.1'
+main: org.syumai.plugin.Discordconnector
+description: Lunachatのグローバルモードのチャットをdiscordに表示するやつ

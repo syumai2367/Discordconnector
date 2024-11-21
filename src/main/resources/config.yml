@@ -1,0 +1,9 @@
+discord:
+  webhook-url: "https://discord.com/api/webhooks/your-webhook-url"
+  bot-token: "YOUR_BOT_TOKEN"
+  channel-id: "YOUR_CHANNEL_ID"
+minecraft:
+    servers:
+        33621: lobby //server lobbyで行けるサーバーのportを設定
+        37218: test  //server ooで行けるサーバーのportを左、名前を右に
+localip : """

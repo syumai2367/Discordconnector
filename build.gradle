@@ -1,0 +1,70 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2' // Shadow Pluginを使ってファットJARを作成
+}
+
+group 'org.syumai.plugin'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    // JDA用のリポジトリ
+    maven {
+        name 'm2-dv8tion'
+        url 'https://m2.dv8tion.net/releases'
+    }
+    maven {
+        name 'scarsz'
+        url 'https://nexus.scarsz.me/content/repositories/releases'
+    }
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    maven {
+        url 'https://repo.opencollab.dev/maven-releases/'
+    }
+}
+
+dependencies {
+    compileOnly 'net.md-5:bungeecord-api:1.18-R0.1-SNAPSHOT'
+    implementation("net.dv8tion:JDA:5.0.0-alpha.3") {
+        exclude module: 'opus-java'
+    }
+
+    // OkHttp（HTTP通信が必要な場合）
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'org.slf4j:slf4j-simple:1.7.36'  // バージョンに合わせる
+    compileOnly files('lib/LunaChat.jar')
+
+    compileOnly files('lib/Geyser-BungeeCord.jar')
+
+    compileOnly files('lib/floodgate-bungee.jar')
+
+    // JDA依存関係
+    implementation 'net.dv8tion:JDA:5.0.0'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    // テスト用
+    testImplementation 'junit:junit:4.13.2'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.syumai.plugin.Discordconnector', // メインクラスの設定
+                'Implementation-Version': version
+        )
+    }
+}
+group = 'org.syumai.plugin'
+version = '0.1'
+description = 'test'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+build.dependsOn shadowJar
