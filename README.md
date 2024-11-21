@@ -1,2 +1,1 @@
-"# Discordconnector" 
-"# Discordconnector" 
+Read me ですよ！？
